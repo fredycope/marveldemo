@@ -8,12 +8,12 @@ It has implemented mvvm + clean architecture and uses hilt dependency injection
 
 Main Screen:
 
-<img width="197" alt="image" src="https://user-images.githubusercontent.com/43895637/144643600-bc2d22ba-428f-46bf-88df-f3321420089c.png">
+![image](https://user-images.githubusercontent.com/43895637/144671577-0d4d2ada-3f78-474f-a982-f2e38bdd7af7.png)
+
 
 Detail Screen:
 
-<img width="195" alt="image" src="https://user-images.githubusercontent.com/43895637/144644092-cb9a11a8-2274-433f-9792-df5bf0bd576d.png">
-
+![image](https://user-images.githubusercontent.com/43895637/144672539-2f423b47-5872-4756-9c45-7488ec802386.png)
 
 Technologies:
 This project has the following technology
