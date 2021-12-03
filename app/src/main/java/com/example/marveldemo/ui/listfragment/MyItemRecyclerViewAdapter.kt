@@ -46,10 +46,10 @@ private val items: MutableList<Results> = ArrayList()
     inner class ViewHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(item: Results){
             val itm = binding as FragmentItemBinding
-            itm.itemNumber.text = "ID: ${item.id}"
-            itm.content.text =  "Description: ${item.title}"
+            Glide.with(itm.itemNumber).load(item.thumbnail.path.plus(".${item.thumbnail.extension}")).into(itm.itemNumber)
 
             itemView.setOnClickListener {
+                println("ID-->${item.id}")
                 onClickList.goToFragement(item.id,it)
             }
         }

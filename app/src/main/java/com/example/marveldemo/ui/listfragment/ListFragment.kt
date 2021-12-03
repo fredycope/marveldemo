@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.marveldemo.R
 import com.example.marveldemo.utils.Nav
 import com.example.marveldemo.utils.OnClickList
@@ -17,6 +18,7 @@ import com.example.marveldemo.ui.placeholder.PlaceholderContent
 import com.example.marveldemo.utils.Constants.API_KEY
 import com.example.marveldemo.utils.Constants.HASH
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.Exception
 import java.math.BigInteger
 import java.security.MessageDigest
 import java.util.*
@@ -43,7 +45,7 @@ class ListFragment : Fragment(), OnClickList {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_list, container, false)
         binding.viewModel = viewModel
         binding.list.apply{
-            binding.list.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL, false)
+            binding.list.layoutManager = GridLayoutManager(requireContext(),2)
         }
         binding.list.adapter = adapter
 
@@ -53,13 +55,14 @@ class ListFragment : Fragment(), OnClickList {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.marvel.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-            adapter.addData(it.data.results)
-        })
+
     }
 
     override fun onResume() {
         super.onResume()
+        viewModel.marvel.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            adapter.addData(it)
+        })
     }
     companion object {
 

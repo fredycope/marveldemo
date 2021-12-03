@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.example.marveldemo.R
 import com.example.marveldemo.databinding.FragmentDetailBinding
 import com.example.marveldemo.domain.model.Results
@@ -44,10 +45,16 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.marvelId.observe(viewLifecycleOwner, Observer {
+            if(it.data.results.get(0).images.isNullOrEmpty()){
+                Glide.with(binding.ivImg).load(it.data.results.get(0).thumbnail.path.plus(".${it.data.results.get(0).thumbnail.extension}")).into(binding.ivImg)
+            }else{
+                Glide.with(binding.ivImg).load(it.data.results.get(0).images.get(0).path.plus(".${it.data.results.get(0).images.get(0).extension}")).into(binding.ivImg)
+            }
+
             binding.tvId.text = "Id: ${it.data.results.get(0).id}"
             binding.tvTitle.text = "Titulo:\n${it.data.results.get(0).title}"
             binding.tvOverview.text = "Descripción:\n${if(it.data.results.get(0).description.isNullOrEmpty()) "No disponible" else it.data.results.get(0).description }"
-            binding.tvTxt.text= "Url: ${it.data.results.get(0).modified}"
+            binding.tvTxt.text= "Url: ${it.data.results.get(0).resourceURI}"
 
         })
     }
