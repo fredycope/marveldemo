@@ -1,7 +1,6 @@
 package com.example.marveldemo.domain.usecase
 
 import com.example.marveldemo.data.repositoryImpl.MarvelRepository
-import com.example.marveldemo.domain.model.RequestMarvel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

@@ -6,11 +6,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.marveldemo.domain.model.RequestMarvel
 import com.example.marveldemo.domain.usecase.GetMarvelIdUseCase
 import com.google.gson.Gson
-import com.google.gson.JsonObject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import com.google.gson.reflect.TypeToken
 
 
 

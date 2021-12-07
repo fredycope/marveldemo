@@ -4,7 +4,6 @@ import com.example.marveldemo.domain.model.RequestMarvel
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import java.lang.reflect.Type
 
 interface RetrofitService {
     @GET("comics?ts=1")

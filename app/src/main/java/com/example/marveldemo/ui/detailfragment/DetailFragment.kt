@@ -11,10 +11,8 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.marveldemo.R
 import com.example.marveldemo.databinding.FragmentDetailBinding
-import com.example.marveldemo.domain.model.Results
 import com.example.marveldemo.utils.Constants.API_KEY
 import com.example.marveldemo.utils.Constants.HASH
-import com.google.gson.Gson
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,7 +34,7 @@ class DetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
          binding = DataBindingUtil.inflate(inflater,R.layout.fragment_detail, container, false)
          binding.viewModel = viewModel
          return binding.root
@@ -45,26 +43,17 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.marvelId.observe(viewLifecycleOwner, Observer {
-            if(it.data.results.get(0).images.isNullOrEmpty()){
-                Glide.with(binding.ivImg).load(it.data.results.get(0).thumbnail.path.plus(".${it.data.results.get(0).thumbnail.extension}")).into(binding.ivImg)
+            if(it.data.results.first().images.isNullOrEmpty()){
+                Glide.with(binding.ivImg).load(it.data.results.first().thumbnail.path.plus(".${it.data.results.first().thumbnail.extension}")).into(binding.ivImg)
             }else{
-                Glide.with(binding.ivImg).load(it.data.results.get(0).images.get(0).path.plus(".${it.data.results.get(0).images.get(0).extension}")).into(binding.ivImg)
+                Glide.with(binding.ivImg).load(it.data.results.first().images.first().path.plus(".${it.data.results.first().images.first().extension}")).into(binding.ivImg)
             }
 
-            binding.tvId.text = "Id: ${it.data.results.get(0).id}"
-            binding.tvTitle.text = "Titulo:\n${it.data.results.get(0).title}"
-            binding.tvOverview.text = "Descripción:\n${if(it.data.results.get(0).description.isNullOrEmpty()) "No disponible" else it.data.results.get(0).description }"
-            binding.tvTxt.text= "Url: ${it.data.results.get(0).resourceURI}"
+            binding.tvId.text = "Id: ${it.data.results.first().id}"
+            binding.tvTitle.text = "Titulo:\n${it.data.results.first().title}"
+            binding.tvOverview.text = "Descripción:\n${if(it.data.results.first().description.isNullOrEmpty()) "No disponible" else it.data.results.first().description }"
+            binding.tvTxt.text= "Url: ${it.data.results.first().resourceURI}"
 
         })
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DetailFragment().apply {
-                arguments = Bundle().apply {
-                }
-            }
     }
 }

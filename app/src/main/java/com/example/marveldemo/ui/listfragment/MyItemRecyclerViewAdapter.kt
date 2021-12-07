@@ -11,7 +11,6 @@ import com.example.marveldemo.utils.OnClickList
 import com.example.marveldemo.databinding.FragmentItemBinding
 import com.example.marveldemo.domain.model.Results
 
-import com.example.marveldemo.ui.placeholder.PlaceholderContent.PlaceholderItem
 
 
 class MyItemRecyclerViewAdapter(
@@ -49,8 +48,7 @@ private val items: MutableList<Results> = ArrayList()
             Glide.with(itm.itemNumber).load(item.thumbnail.path.plus(".${item.thumbnail.extension}")).into(itm.itemNumber)
 
             itemView.setOnClickListener {
-                println("ID-->${item.id}")
-                onClickList.goToFragement(item.id,it)
+                onClickList.goToFragment(item.id,it)
             }
         }
     }
